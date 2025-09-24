@@ -158,17 +158,15 @@ int solvePart2(std::vector<std::string> input)
 
 int main()
 {
+	auto lines = aoc::read_lines("years/2023/day03/input/input.txt");
+
 	// Part 1
-	auto lines1 = aoc::read_lines("years/2023/day03/input/input_pt1.txt");
-
-	int sum = solvePart1(lines1);
-
+	int sum = solvePart1(lines);
 	std::cout << "Part 1 Result: " << sum << "\n";
 
 	// Part 2
-	auto lines2 = aoc::read_lines("years/2023/day03/input/input_pt2.txt");
-
-	int gear_ratio = solvePart2(lines2);
-
+	int gear_ratio = solvePart2(lines);
 	std::cout << "Part 2 Result: " << gear_ratio << "\n";
+
+    return 0;
 }

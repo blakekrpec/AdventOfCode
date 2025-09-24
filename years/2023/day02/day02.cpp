@@ -138,11 +138,11 @@ int computePower(const GameResult &game_result)
 
 int main()
 {
-	// Part 1
-	auto lines1 = aoc::read_lines("years/2023/day02/input/input_pt1.txt");
+	const auto lines = aoc::read_lines("years/2023/day02/input/input.txt");
 
+	// Part 1
 	size_t sum = 0;
-	for (const auto &line : lines1)
+	for (const auto &line : lines)
 	{
 		GameNumAndInfo game_num_info = extractGameNumAndInfo(line);
 		GameResult game_result = unpackGameInfoToGameResult(game_num_info);
@@ -154,15 +154,15 @@ int main()
 	std::cout << "Part 1 Result: " << sum << "\n";
 
 	// Part 2
-	auto lines2 = aoc::read_lines("years/2023/day02/input/input_pt2.txt");
-
 	size_t power_sum = 0;
 
-	for (const auto &line : lines2)
+	for (const auto &line : lines)
 	{
 		GameNumAndInfo game_num_info = extractGameNumAndInfo(line);
 		GameResult game_result = unpackGameInfoToGameResult(game_num_info);
 		power_sum += computePower(game_result);
 	}
 	std::cout << "Part 2 Result: " << power_sum << "\n";
+
+    return 0;
 }

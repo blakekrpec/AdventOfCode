@@ -4,8 +4,7 @@
 
 #include "utils.hpp"
 
-const std::vector<std::string> NUM_WORDS = {
-	"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+const std::vector<std::string> NUM_WORDS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
 int findCalibrationValuesPt1(const std::string &str)
 {
@@ -28,7 +27,7 @@ int findCalibrationValuesPt1(const std::string &str)
 	return std::stoi(result);
 }
 
-int solutionPt1(std::vector<std::string> &lines)
+int solvePart1(const std::vector<std::string> &lines)
 {
 	int sum = 0;
 
@@ -91,7 +90,7 @@ int findCalibrationValuesPt2(const std::string &str)
 	return std::stoi(result);
 }
 
-int solutionPt2(std::vector<std::string> &lines)
+int solvePart2(const std::vector<std::string> &lines)
 {
 	int sum = 0;
 
@@ -105,14 +104,14 @@ int solutionPt2(std::vector<std::string> &lines)
 
 int main()
 {
+	const auto lines = aoc::read_lines("years/2023/day01/input/input.txt");
+
 	// Part 1
-	auto lines1 = aoc::read_lines("years/2023/day01/input/input_pt1.txt");
-	int sum = solutionPt1(lines1);
+	int sum = solvePart1(lines);
 	std::cout << "Part 1: " << sum << "\n";
 
 	// Part 2
-	auto lines2 = aoc::read_lines("years/2023/day01/input/input_pt2.txt");
-	sum = solutionPt2(lines2);
+	sum = solvePart2(lines);
 	std::cout << "Part 2: " << sum << "\n";
 
 	return 0;
