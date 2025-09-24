@@ -45,7 +45,8 @@ std::vector<CardLine> processScratchCard(const std::vector<std::string> &lines)
 
 	return card_lines;
 }
-int computeScoreOfLine(const CardLine &card_line)
+
+int computeNumberOfMatches(const CardLine &card_line)
 {
 	int matches = 0;
 	for (const auto &play_num : card_line.second)
@@ -58,7 +59,7 @@ int computeScoreOfLine(const CardLine &card_line)
 			}
 		}
 	}
-	return pow(2, matches - 1);
+	return matches;
 }
 
 int solvePart1(const std::vector<std::string> &lines)
@@ -68,9 +69,34 @@ int solvePart1(const std::vector<std::string> &lines)
 
 	for (const auto &card_line : card_lines)
 	{
-		result += computeScoreOfLine(card_line);
+		int matches = computeNumberOfMatches(card_line);
+		result += pow(2, matches - 1);
 	}
 	return result;
+}
+
+int solvePart2(const std::vector<std::string> &lines)
+{
+	int num_cards = 0;
+	std::vector<int> num_of_each_card(lines.size(), 1);
+
+	std::vector<CardLine> card_lines = processScratchCard(lines);
+
+	for (int i = 0; i < card_lines.size(); i++)
+	{
+		int matches = computeNumberOfMatches(card_lines.at(i));
+		int end = std::min((int)num_of_each_card.size() - 1, i + matches);
+		for (int j = i + 1; j <= end; j++)
+		{
+			num_of_each_card.at(j) += num_of_each_card.at(i);
+		}
+	}
+
+	for (int i = 0; i < num_of_each_card.size(); i++)
+	{
+		num_cards += num_of_each_card.at(i);
+	}
+	return num_cards;
 }
 
 int main()
@@ -80,5 +106,8 @@ int main()
 	int points = solvePart1(lines);
 	std::cout << "Part 1: " << points << "\n";
 
-    return 0;
+	int num_cards = solvePart2(lines);
+	std::cout << "Part 2: " << num_cards << "\n";
+
+	return 0;
 }
