@@ -1,8 +1,9 @@
+#include "utils.hpp"
+
+// STD
 #include <cctype>
 #include <iostream>
 #include <string>
-
-#include "utils.hpp"
 
 const std::vector<std::string> NUM_WORDS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
@@ -104,7 +105,7 @@ int solvePart2(const std::vector<std::string> &lines)
 
 int main()
 {
-	const auto lines = aoc::read_lines("years/2023/day01/input/input.txt");
+	const auto lines = aoc::read_lines("src/years/2023/day01/input/input.txt");
 
 	// Part 1
 	int sum = solvePart1(lines);

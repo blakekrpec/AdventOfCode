@@ -13,12 +13,12 @@ if(DAY_TO_BUILD)
 
     get_filename_component(DAY_DIR ${DAY_TO_BUILD} DIRECTORY)
 
-    string(REGEX MATCH "years/([0-9]+)/" _match "${DAY_DIR}")
+    string(REGEX MATCH "src/years/([0-9]+)/" _match "${DAY_DIR}")
     set(DAY_YEAR "${CMAKE_MATCH_1}")
 
     message(STATUS "Building day: ${DAY_NAME} from ${DAY_TO_BUILD} (year ${DAY_YEAR})")
 
-    add_executable(${DAY_NAME} ${DAY_TO_BUILD})
+    add_executable(${DAY_NAME} ${DAY_TO_BUILD} src/utils.cpp)
     target_include_directories(${DAY_NAME} PRIVATE include)
 
     set_target_properties(${DAY_NAME} PROPERTIES

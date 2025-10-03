@@ -1,8 +1,10 @@
 #include "utils.hpp"
 
+// STD
 #include <cctype>
 #include <cstddef>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 
 using GameNumAndInfo = std::pair<size_t, std::string>;
@@ -138,7 +140,7 @@ int computePower(const GameResult &game_result)
 
 int main()
 {
-	const auto lines = aoc::read_lines("years/2023/day02/input/input.txt");
+	const auto lines = aoc::read_lines("src/years/2023/day02/input/input.txt");
 
 	// Part 1
 	size_t sum = 0;
@@ -164,5 +166,5 @@ int main()
 	}
 	std::cout << "Part 2 Result: " << power_sum << "\n";
 
-    return 0;
+	return 0;
 }
