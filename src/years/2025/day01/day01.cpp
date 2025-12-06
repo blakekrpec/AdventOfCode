@@ -1,4 +1,4 @@
-
+// AOC
 #include "utils.hpp"
 
 // STD
@@ -12,7 +12,7 @@ int cyclicAdd(int dial_pos, int val, int num_dial_positions)
 	return (((dial_pos + val) % num_dial_positions) + num_dial_positions) % num_dial_positions;
 }
 
-// Counts the number of times a dial with num_dial_positions numbers, on dial position dial_posjj w, rotated by delta (+
+// Counts the number of times a dial with num_dial_positions numbers, on dial position dial_pos, rotated by delta (+
 // CW, - CCW) would pass zero.
 int countRevolutions(int dial_pos, int delta, int num_dial_positions)
 {
@@ -63,7 +63,7 @@ int solvePart1(const std::vector<std::string> &moves)
 {
 	int password = 0;
 	int dial_pos = 50;
-	int num_dial_positions = 100;
+	constexpr int NUM_DIAL_POSITIONS = 100;
 
 	for (auto &line : moves)
 	{
@@ -72,7 +72,7 @@ int solvePart1(const std::vector<std::string> &moves)
 		int delta = (dir == 'L') ? -amount : amount;
 
 		// Rotate the dial in appropriate direction (CW/CCW).
-		dial_pos = cyclicAdd(dial_pos, delta, num_dial_positions);
+		dial_pos = cyclicAdd(dial_pos, delta, NUM_DIAL_POSITIONS);
 
 		if (dial_pos == 0)
 		{
@@ -88,7 +88,7 @@ int solvePart2(const std::vector<std::string> &moves)
 	int password = 0;
 	int dial_pos = 50;
 	int revs = 0;
-	int num_dial_positions = 100;
+	constexpr int NUM_DIAL_POSITIONS = 100;
 
 	for (auto &line : moves)
 	{
@@ -97,10 +97,10 @@ int solvePart2(const std::vector<std::string> &moves)
 		int delta = (dir == 'L') ? -amount : amount;
 
 		// Count how many times the upcoming rotation will pass 0 on the dial.
-		password += countRevolutions(dial_pos, delta, num_dial_positions);
+		password += countRevolutions(dial_pos, delta, NUM_DIAL_POSITIONS);
 
 		// Rotate the dial in appropriate direction (CW/CCW).
-		dial_pos = cyclicAdd(dial_pos, delta, num_dial_positions);
+		dial_pos = cyclicAdd(dial_pos, delta, NUM_DIAL_POSITIONS);
 	}
 
 	return password;
