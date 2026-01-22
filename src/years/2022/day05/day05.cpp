@@ -179,7 +179,7 @@ std::string solvePart2(const std::vector<std::string> &lines)
 
 int main()
 {
-	const auto lines = aoc::read_lines("src/years/2022/day05/input/input.txt");
+	const auto lines = aoc::readLines("src/years/2022/day05/input/input.txt");
 
 	std::string top_crates = solvePart1(lines);
 	std::cout << "Part 1: " << top_crates << "\n";

@@ -115,7 +115,7 @@ long long solvePart2(const std::vector<std::string> &lines)
 
 int main()
 {
-	auto lines = aoc::read_lines("src/years/2025/day02/input/input.txt");
+	auto lines = aoc::readLines("src/years/2025/day02/input/input.txt");
 
 	// Part 1
 	long long sum_invalid_ids = solvePart1(lines);

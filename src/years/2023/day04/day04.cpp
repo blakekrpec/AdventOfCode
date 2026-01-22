@@ -104,7 +104,7 @@ int solvePart2(const std::vector<std::string> &lines)
 
 int main()
 {
-	const auto lines = aoc::read_lines("src/years/2023/day04/input/input.txt");
+	const auto lines = aoc::readLines("src/years/2023/day04/input/input.txt");
 
 	int points = solvePart1(lines);
 	std::cout << "Part 1: " << points << "\n";

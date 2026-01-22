@@ -75,7 +75,7 @@ int solvePart2(const std::vector<std::string> &lines)
 
 int main()
 {
-	const auto lines = aoc::read_lines("src/years/2022/day03/input/input.txt");
+	const auto lines = aoc::readLines("src/years/2022/day03/input/input.txt");
 
 	// Part 1
 	int sum_of_priorities = solvePart1(lines);

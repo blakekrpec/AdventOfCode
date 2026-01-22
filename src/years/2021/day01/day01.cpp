@@ -1,8 +1,8 @@
+// AOC
 #include "utils.hpp"
 
 // STD
 #include <iostream>
-#include <string>
 #include <vector>
 
 int solvePart1(const std::vector<int> &nums)
@@ -33,7 +33,7 @@ int solvePart2(const std::vector<int> &nums)
 
 int main()
 {
-	auto lines = aoc::read_lines_as_int("src/years/2021/day01/input/input.txt");
+	auto lines = aoc::readLinesAsInts("src/years/2021/day01/input/input.txt");
 
 	// Part 1
 	int num_of_increases = solvePart1(lines);

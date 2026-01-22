@@ -160,7 +160,7 @@ int solvePart2(std::vector<std::string> input)
 
 int main()
 {
-	auto lines = aoc::read_lines("src/years/2023/day03/input/input.txt");
+	auto lines = aoc::readLines("src/years/2023/day03/input/input.txt");
 
 	// Part 1
 	int sum = solvePart1(lines);

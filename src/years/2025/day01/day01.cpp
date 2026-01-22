@@ -108,7 +108,7 @@ int solvePart2(const std::vector<std::string> &moves)
 
 int main()
 {
-	auto lines = aoc::read_lines("src/years/2025/day01/input/input.txt");
+	auto lines = aoc::readLines("src/years/2025/day01/input/input.txt");
 
 	// Part 1
 	int password = solvePart1(lines);

@@ -67,7 +67,7 @@ int solvePart2(const std::vector<int> &cals)
 
 int main()
 {
-	auto lines = aoc::read_lines_as_int_empty_as_zero("src/years/2022/day01/input/input.txt");
+	auto lines = aoc::readLinesAsIntsEmptyAsZero("src/years/2022/day01/input/input.txt");
 
 	// Part 1
 	int max_cal = solvePart1(lines);

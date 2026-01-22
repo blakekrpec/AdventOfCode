@@ -103,7 +103,7 @@ int solvePart2(const std::vector<std::string> &lines, const std::vector<std::vec
 
 int main()
 {
-	const auto lines = aoc::read_lines("src/years/2022/day02/input/input.txt");
+	const auto lines = aoc::readLines("src/years/2022/day02/input/input.txt");
 
 	const std::vector<std::vector<int>> possible_outcomes = {
 		{ROCK, ROCK, DRAW},	  {ROCK, PAPER, WIN},	  {ROCK, SCISSOR, LOSS},

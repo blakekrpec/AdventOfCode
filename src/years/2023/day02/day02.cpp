@@ -141,7 +141,7 @@ int computePower(const GameResult &game_result)
 
 int main()
 {
-	const auto lines = aoc::read_lines("src/years/2023/day02/input/input.txt");
+	const auto lines = aoc::readLines("src/years/2023/day02/input/input.txt");
 
 	// Part 1
 	size_t sum = 0;
