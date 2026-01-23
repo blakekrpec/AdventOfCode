@@ -2,6 +2,7 @@
 #include "utils.hpp"
 
 // STD
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -77,42 +78,41 @@ int solvePart1(const std::vector<std::string> &lines)
 	return fresh_ingredient_count;
 }
 
-// Determine how many unique possible fresh ingredient IDs exist for given fresh 
+// Determine how many unique possible fresh ingredient IDs exist for given fresh
 // ingredient ranges.
 long long solvePart2(const std::vector<std::string> &lines)
 {
 	std::vector<std::pair<long long, long long>> fresh_ID_ranges = getFreshRanges(lines);
 
-    std::sort(fresh_ID_ranges.begin(), fresh_ID_ranges.end());
+	std::sort(fresh_ID_ranges.begin(), fresh_ID_ranges.end());
 
-    std::vector<std::pair<long long, long long>> merged_ID_ranges;
-    merged_ID_ranges.push_back(fresh_ID_ranges[0]);
+	std::vector<std::pair<long long, long long>> merged_ID_ranges;
+	merged_ID_ranges.push_back(fresh_ID_ranges[0]);
 
-    // Find overlaps in ranges, and build vector of merged ranges.
-    for (size_t i = 1; i < fresh_ID_ranges.size(); i++)
-    {
-        auto &last_range = merged_ID_ranges.back();
-        const auto &current_range = fresh_ID_ranges[i];
+	// Find overlaps in ranges, and build vector of merged ranges.
+	for (size_t i = 1; i < fresh_ID_ranges.size(); i++)
+	{
+		auto &last_range = merged_ID_ranges.back();
+		const auto &current_range = fresh_ID_ranges[i];
 
-        if (last_range.second + 1 >= current_range.first)
-        {
-            last_range.second = std::max(last_range.second, current_range.second);
-        }
-        else 
-        {
-            merged_ID_ranges.push_back(current_range);
-        }
-    }
+		if (last_range.second + 1 >= current_range.first)
+		{
+			last_range.second = std::max(last_range.second, current_range.second);
+		}
+		else
+		{
+			merged_ID_ranges.push_back(current_range);
+		}
+	}
 
-    long long possible_fresh_IDs_count{0};
+	long long possible_fresh_IDs_count{0};
 
-    for (const auto &id : merged_ID_ranges)
-    {
-        possible_fresh_IDs_count += (id.second - id.first) + 1;
-    }
+	for (const auto &id : merged_ID_ranges)
+	{
+		possible_fresh_IDs_count += (id.second - id.first) + 1;
+	}
 
-    return possible_fresh_IDs_count;
-
+	return possible_fresh_IDs_count;
 }
 
 int main()
