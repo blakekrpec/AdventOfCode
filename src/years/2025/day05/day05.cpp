@@ -4,9 +4,9 @@
 // STD
 #include <iostream>
 #include <string>
-#include <unordered_set>
 #include <vector>
 
+// Iterate and process up to empty line, extracing range pairs.
 std::vector<std::pair<long long, long long>> getFreshRanges(const std::vector<std::string> &lines)
 {
 	std::vector<std::pair<long long, long long>> results{};
@@ -29,6 +29,7 @@ std::vector<std::pair<long long, long long>> getFreshRanges(const std::vector<st
 	return results;
 }
 
+// Iterate to the empty line, and then start processing Ingredient IDs.
 std::vector<long long> getIngredientIDs(const std::vector<std::string> &lines)
 {
 	std::vector<long long> results{};
@@ -52,21 +53,12 @@ std::vector<long long> getIngredientIDs(const std::vector<std::string> &lines)
 	return results;
 }
 
+// Determine how man ingredient IDs fall in a given fresh ingredient range.
 int solvePart1(const std::vector<std::string> &lines)
 {
 	std::vector<std::pair<long long, long long>> fresh_ID_ranges = getFreshRanges(lines);
 
-	// for (const auto &pair : fresh_ID_ranges)
-	// {
-	// 	std::cout << "pair: " << pair.first << " - " << pair.second << "\n";
-	// }
-
 	std::vector<long long> ingredient_IDs = getIngredientIDs(lines);
-
-	// for (const auto &id : ingredient_IDs)
-	// {
-	// 	std::cout << "id: " << id << "\n";
-	// }
 
 	int fresh_ingredient_count{0};
 
@@ -77,43 +69,50 @@ int solvePart1(const std::vector<std::string> &lines)
 			if (id >= range.first && id <= range.second)
 			{
 				fresh_ingredient_count++;
-				// std::cout << "ID: " << id << " is fresh. In range: " << range.first << " - " << range.second << "\n";
-				// std::cout << "New fresh_ing_count is " << fresh_ingredient_count << "\n";
-				// std::cout << "\n";
 				break;
 			}
-			// else
-			// {
-			// 	std::cout << "ID: " << id << " did not fall in range: " << range.first << " - " << range.second << "\n";
-			// 	std::cout << "\n";
-			// }
 		}
 	}
 
 	return fresh_ingredient_count;
 }
 
+// Determine how many unique possible fresh ingredient IDs exist for given fresh 
+// ingredient ranges.
 long long solvePart2(const std::vector<std::string> &lines)
 {
 	std::vector<std::pair<long long, long long>> fresh_ID_ranges = getFreshRanges(lines);
 
-	std::unordered_set<long long> possible_fresh_IDs{};
+    std::sort(fresh_ID_ranges.begin(), fresh_ID_ranges.end());
 
-	for (const auto &id : fresh_ID_ranges)
-	{
-		for (long long i = id.first; i <= id.second; i++)
-		{
-			possible_fresh_IDs.emplace(i);
-		}
-	}
+    std::vector<std::pair<long long, long long>> merged_ID_ranges;
+    merged_ID_ranges.push_back(fresh_ID_ranges[0]);
 
-	long long possible_fresh_IDs_count{0};
+    // Find overlaps in ranges, and build vector of merged ranges.
+    for (size_t i = 1; i < fresh_ID_ranges.size(); i++)
+    {
+        auto &last_range = merged_ID_ranges.back();
+        const auto &current_range = fresh_ID_ranges[i];
 
-	for (const auto &id : possible_fresh_IDs)
-	{
-		possible_fresh_IDs_count += id;
-	}
-	return possible_fresh_IDs_count;
+        if (last_range.second + 1 >= current_range.first)
+        {
+            last_range.second = std::max(last_range.second, current_range.second);
+        }
+        else 
+        {
+            merged_ID_ranges.push_back(current_range);
+        }
+    }
+
+    long long possible_fresh_IDs_count{0};
+
+    for (const auto &id : merged_ID_ranges)
+    {
+        possible_fresh_IDs_count += (id.second - id.first) + 1;
+    }
+
+    return possible_fresh_IDs_count;
+
 }
 
 int main()
