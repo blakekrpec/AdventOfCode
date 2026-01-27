@@ -68,10 +68,14 @@ std::vector<int> readLinesAsIntsEmptyAsZero(const std::string &filename)
 	return lines;
 }
 
-std::vector<int> stringToVecOfInts(const std::string &str)
+std::vector<int> delimStringToVecOfInts(const std::string &str, char delim)
 {
 	std::vector<int> result;
-
+	for (const auto &token : split(str, delim))
+	{
+		if (!token.empty())
+			result.push_back(std::stoi(token));
+	}
 	return result;
 }
 
