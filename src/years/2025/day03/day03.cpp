@@ -10,7 +10,8 @@ long long getMaxIntFromString(const std::string &str, int digits)
 {
 	if (digits > str.length())
 	{
-		std::cout << "Number of digits requested is > string length." << "\n";
+		std::cout << "Number of digits requested is > string length."
+				  << "\n";
 		return 0;
 	}
 	if (digits == str.length())
