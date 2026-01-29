@@ -51,7 +51,7 @@ std::vector<std::vector<std::string>> getInputs(const std::vector<std::string> &
 
 		if (is_delim)
 		{
-			delims.push_back(col);
+			delims.emplace_back(col);
 		}
 	}
 
@@ -70,7 +70,7 @@ std::vector<std::vector<std::string>> getInputs(const std::vector<std::string> &
 	// Capture the final segment after the final delim.
 	for (size_t row = 0; row < lines.size() - 1; row++)
 	{
-		inputs[row].push_back(lines[row].substr(start));
+		inputs[row].emplace_back(lines[row].substr(start));
 	}
 
 	return inputs;
@@ -125,7 +125,7 @@ long long solvePart2(const std::vector<std::string> &lines)
 		// Build sets of columns of input numbers.
 		for (size_t row = 0; row < inputs.size(); row++)
 		{
-			operation_numbers.push_back(inputs[row][op]);
+			operation_numbers.emplace_back(inputs[row][op]);
 		}
 
 		// If adding reset op_result to 0, if multiplying set to 1 (so we don't just multiply to 0).
