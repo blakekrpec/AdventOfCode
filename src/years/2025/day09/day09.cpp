@@ -2,6 +2,7 @@
 #include "utils.hpp"
 
 // STD
+#include <array>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -84,6 +85,11 @@ struct Rectangle
 		long long height = tl.y - bl.y;
 		return width * height;
 	}
+
+	std::array<const Point *, 4> corners() const
+	{
+		return {&bl, &br, &tl, &tr};
+	}
 };
 
 long long solvePart1(const std::vector<std::string> &lines)
@@ -116,11 +122,19 @@ long long solvePart1(const std::vector<std::string> &lines)
 	return result;
 }
 
-bool isValidRectangle(const Rectangle rect)
+bool isValidRectangle(const Rectangle rect, const std::vector<Point> &pts, const std::vector<Edge> &edges)
 {
 	// Check that all 4 corners of rect are in the polygon, or on an edge.
+	for (const Point *corner : rect.corners())
+	{
+		int x = corner->x;
+		int y = corner->y;
+	}
 
 	// Then check that no edges intersect with our polygon.
+	for (const auto &edge : edges)
+	{
+	}
 
 	return true;
 }
@@ -154,7 +168,7 @@ long long solvePart2(const std::vector<std::string> &lines)
 
 			const Rectangle rect = Rectangle(points[i], points[j]);
 
-			if (isValidRectangle(rect) && rect.area() > area)
+			if (isValidRectangle(rect, points, edges) && rect.area() > area)
 			{
 				area = rect.area();
 			}
